@@ -13,6 +13,9 @@ public class Doctor {
      * @param theCol The column this Doctor starts at.
      */
     public Doctor(int theRow, int theCol) {
+        this.col= theCol;
+        this.row= theRow;
+        
 
     }
 
@@ -27,8 +30,25 @@ public class Doctor {
      * @param newRow The row the player clicked on.
      * @param newCol The column the player clicked on.
      */
-    public void move(int newRow, int newCol) {
+   public void move(int newRow, int newCol) {
+  
+        if (((newRow - this.row == -1 || newRow - this.row == 0) && (newCol - this.col == 0 || newCol - this.col == -1 || newCol - this.col == 1))
+                || ((newRow - this.row == -1 || newRow - this.row == 0) && (newCol - this.col == -1))
+                || ((newRow - this.row == 1 || newRow - this.row == 0) && (newCol - this.col == -1 || newCol - this.col == 0 || newCol - this.col == 1))
+                || ((newRow - this.row == 0) && (newCol - this.col == 1))) {
+            this.row = newRow;
+            this.col = newCol;
 
+        } 
+        else if (newRow == this.row && newCol == this.col) {
+            this.row = newRow;
+            this.col = newCol;
+        } 
+        else {
+            this.row = (int) (Math.random() * 12);
+            this.col = (int) (Math.random() * 12);
+
+        }
     }
 
     /**
@@ -37,16 +57,14 @@ public class Doctor {
      * @return This Doctor's row.
      */
     public int getRow() {
-
+        return this.row;
     }
-
     /**
      * Returns the column of this Doctor.
      *
      * @return This Doctor's column.
      */
     public int getCol() {
-
+        return this.col;
     }
-
 }
